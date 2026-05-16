@@ -56,6 +56,17 @@ npm run start
 - `releases/ruankao-practice-macos.zip`
 - `releases/ruankao-practice-windows.zip`
 
+直接下载链接：
+
+- 源码 ZIP：https://github.com/qingningmneg/-1/archive/refs/heads/main.zip
+- macOS 压缩包：https://github.com/qingningmneg/-1/raw/main/releases/ruankao-practice-macos.zip
+- Windows 压缩包：https://github.com/qingningmneg/-1/raw/main/releases/ruankao-practice-windows.zip
+
+GitHub Release 链接：
+
+- macOS：https://github.com/qingningmneg/-1/releases/latest/download/ruankao-practice-macos.zip
+- Windows：https://github.com/qingningmneg/-1/releases/latest/download/ruankao-practice-windows.zip
+
 使用前先安装 Node.js。解压后：
 
 - macOS：双击 `start.command`，或在终端运行 `./start.command`
@@ -66,3 +77,5 @@ npm run start
 ```text
 http://localhost:8787
 ```
+
+这些压缩包是“一键启动包”，不是免环境安装器。它们不会把 Node.js 打包进去，因此用户仍需先安装 Node.js。

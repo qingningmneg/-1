@@ -59,6 +59,19 @@ npm start
 
 这两个包都不内置 Node.js。用户仍需先安装 Node.js，再运行包内启动脚本。
 
+直接下载：
+
+- 源码 ZIP：https://github.com/qingningmneg/-1/archive/refs/heads/main.zip
+- macOS 压缩包：https://github.com/qingningmneg/-1/raw/main/releases/ruankao-practice-macos.zip
+- Windows 压缩包：https://github.com/qingningmneg/-1/raw/main/releases/ruankao-practice-windows.zip
+
+如果项目发布了 GitHub Release，也可以使用固定的 latest 下载链接：
+
+- macOS：https://github.com/qingningmneg/-1/releases/latest/download/ruankao-practice-macos.zip
+- Windows：https://github.com/qingningmneg/-1/releases/latest/download/ruankao-practice-windows.zip
+
+说明：这些是“一键启动包”，不是免环境安装器。第一次使用前仍需安装 Node.js。
+
 ## 隐私与安全
 
 - DeepSeek API Key 由用户在网页中手动输入，服务端只在本次请求中转发，不写入项目文件。

@@ -1,0 +1,57 @@
+name: Build release packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build packages
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          build_dir="$(mktemp -d)"
+          mkdir -p releases
+
+          mkdir -p "$build_dir/ruankao-practice-macos"
+          cp -R package.json README.md LICENSE server.js .env.example public cache docs questions-md "$build_dir/ruankao-practice-macos/"
+          cp -R scripts/package-macos/. "$build_dir/ruankao-practice-macos/"
+          chmod +x "$build_dir/ruankao-practice-macos/start.command"
+
+          mkdir -p "$build_dir/ruankao-practice-windows"
+          cp -R README.md LICENSE server-win.js .env.example public cache docs questions-md "$build_dir/ruankao-practice-windows/"
+          cp package-win.json "$build_dir/ruankao-practice-windows/package.json"
+          cp -R scripts/package-windows/. "$build_dir/ruankao-practice-windows/"
+
+          (cd "$build_dir" && zip -qr "$GITHUB_WORKSPACE/releases/ruankao-practice-macos.zip" ruankao-practice-macos)
+          (cd "$build_dir" && zip -qr "$GITHUB_WORKSPACE/releases/ruankao-practice-windows.zip" ruankao-practice-windows)
+
+      - name: Upload workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ruankao-practice-packages
+          path: releases/*.zip
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            releases/ruankao-practice-macos.zip \
+            releases/ruankao-practice-windows.zip \
+            --title "软考练题 ${GITHUB_REF_NAME}" \
+            --notes "包含 macOS 和 Windows 一键启动压缩包。用户需先安装 Node.js 18 或更高版本：https://nodejs.org/zh-cn/download"
