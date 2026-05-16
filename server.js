@@ -9,9 +9,26 @@ const ROOT = __dirname;
 const PUBLIC = path.join(ROOT, 'public');
 const CACHE_DIR = path.join(ROOT, 'cache');
 const CACHE_FILE = path.join(CACHE_DIR, 'questions.json');
+loadDotEnv(path.join(ROOT, '.env'));
 const FOLDER_ID = process.env.YDN_FOLDER_ID;
 const PATH_WITH_YDN = `${process.env.HOME}/.local/bin:${process.env.PATH || ''}`;
 
+function loadDotEnv(file) {
+  if (!fs.existsSync(file)) return;
+  const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+    if (!match) continue;
+    const key = match[1];
+    let value = match[2].trim();
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+      value = value.slice(1, -1);
+    }
+    if (!Object.prototype.hasOwnProperty.call(process.env, key)) process.env[key] = value;
+  }
+}
 
 function readRequestBody(req, maxBytes = 1024 * 1024) {
   return new Promise((resolve, reject) => {

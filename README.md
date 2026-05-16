@@ -4,9 +4,20 @@
 
 项目默认读取 `cache/questions.json` 中的本地题库缓存。所有练习记录、错题本和可选保存的 API Key 都只保存在当前浏览器的 `localStorage`。
 
+## 题库内容
+
+仓库已经内置题库，克隆后不配置任何接口也可以直接使用：
+
+- `cache/questions.json`：网页运行使用的题库缓存，当前包含 18 套、1247 道题。
+- `questions-md/`：可直接阅读的 Markdown 题库源文件，文件名已去掉有道云笔记内部 ID。
+
+题目和解析为 AI 参考与人工复核过程稿，仍建议学习者自行核对，不冒充官方答案。
+
 ## 启动
 
 ```bash
+git clone https://github.com/qingningmneg/-1.git
+cd -1
 npm install
 npm start
 ```
@@ -23,14 +34,17 @@ npm start
 
 ## 可选：从有道云笔记同步
 
-如果你维护自己的有道云笔记题库，可以安装并登录 `youdaonote` CLI，然后设置环境变量：
+如果你维护自己的有道云笔记题库，可以安装并登录 `youdaonote` CLI，然后配置 `YDN_FOLDER_ID`：
 
 ```bash
-export YDN_FOLDER_ID="你的有道云笔记文件夹ID"
+cp .env.example .env
+# 编辑 .env，把 YDN_FOLDER_ID 改成你的有道云笔记文件夹 ID
 npm start
 ```
 
 页面点击「同步有道云笔记」会重新拉取并覆盖 `cache/questions.json`。生成的公开题库缓存会使用按标题生成的匿名 ID，不写入原始笔记 ID 或文件夹 ID。
+
+更详细的申请、安装、登录、同步教程见：[docs/youdaonote-sync.md](docs/youdaonote-sync.md)。
 
 ## 隐私与安全
 
