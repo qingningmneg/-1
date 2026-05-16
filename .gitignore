@@ -6,6 +6,7 @@ node_modules/
 *.log
 *.tmp
 *.zip
+!releases/*.zip
 *.7z
 *.rar
 *.tar

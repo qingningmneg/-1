@@ -6,6 +6,12 @@
 - npm
 - 浏览器
 
+Node.js 官网下载：
+
+```text
+https://nodejs.org/zh-cn/download
+```
+
 ## 本地启动
 
 ```bash
@@ -42,3 +48,21 @@ npm run start
 ```
 
 如果你使用 `package-win.json` 打包或分发，请确保 `cache/questions.json` 一起放在项目目录内。Windows 版后端默认不从有道云笔记同步，只读取本地缓存。
+
+## 使用 releases 压缩包
+
+仓库内置两个压缩包：
+
+- `releases/ruankao-practice-macos.zip`
+- `releases/ruankao-practice-windows.zip`
+
+使用前先安装 Node.js。解压后：
+
+- macOS：双击 `start.command`，或在终端运行 `./start.command`
+- Windows：双击 `start.bat`
+
+启动后浏览器打开：
+
+```text
+http://localhost:8787
+```

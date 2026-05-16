@@ -15,6 +15,10 @@
 
 ## 启动
 
+请先安装 Node.js 18 或更高版本：
+
+- Node.js 官网下载：https://nodejs.org/zh-cn/download
+
 ```bash
 git clone https://github.com/qingningmneg/-1.git
 cd -1
@@ -45,6 +49,15 @@ npm start
 页面点击「同步有道云笔记」会重新拉取并覆盖 `cache/questions.json`。生成的公开题库缓存会使用按标题生成的匿名 ID，不写入原始笔记 ID 或文件夹 ID。
 
 更详细的申请、安装、登录、同步教程见：[docs/youdaonote-sync.md](docs/youdaonote-sync.md)。
+
+## 离线压缩包
+
+仓库的 `releases/` 目录提供两个可下载压缩包：
+
+- `ruankao-practice-macos.zip`：macOS 启动脚本版
+- `ruankao-practice-windows.zip`：Windows 启动脚本版
+
+这两个包都不内置 Node.js。用户仍需先安装 Node.js，再运行包内启动脚本。
 
 ## 隐私与安全
 
