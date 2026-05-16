@@ -1,0 +1,12 @@
+{
+  "name": "ruankao-practice-youdao",
+  "version": "0.1.0",
+  "description": "软考练题本地网页，支持题库缓存、随机练习、错题本和 DeepSeek 辅助判题。",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test:parse": "node scripts/test-parser.js"
+  }
+}

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>软考练题</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="hero glass">
+      <div>
+        <p class="eyebrow">YoudaoNote Practice</p>
+        <h1>软考练题</h1>
+        <p class="sub">从有道云笔记加载「考题+答案+解析」，支持按年份练习和全年份随机考试。</p>
+      </div>
+      <button id="syncBtn" class="secondary">同步有道云笔记</button>
+    </section>
+
+    <section class="layout">
+      <aside class="panel glass">
+        <h2>题库设置</h2>
+        <label>
+          模式
+          <select id="modeSelect">
+            <option value="year">选择年份/批次</option>
+            <option value="random">随机考试（全年份）</option>
+          </select>
+        </label>
+        <label id="datasetWrap">
+          年份/批次
+          <select id="datasetSelect"></select>
+        </label>
+        <label id="limitWrap" class="hidden">
+          随机题量
+          <input id="limitInput" type="number" min="1" max="200" value="25" />
+        </label>
+        <label>
+          判题模式
+          <select id="judgeMode">
+            <option value="final">交卷后统一判题</option>
+            <option value="instant">每题答完立即判题 + 显示解析</option>
+            <option value="instant-ai">立即判题 + DeepSeek分析误判原因</option>
+          </select>
+        </label>
+        <label>
+          DeepSeek API Key（填空判分 / 误判分析）
+          <input id="deepseekKey" type="password" placeholder="sk-... 仅保存在本机浏览器" autocomplete="off" />
+        </label>
+        <label class="inline-check">
+          <input id="rememberKey" type="checkbox" />
+          <span>记住 API Key 到本机浏览器</span>
+        </label>
+        <button id="startBtn" class="primary">开始练题</button>
+        <div class="side-actions">
+          <button id="wrongBookBtn" class="secondary" type="button">错题本</button>
+          <button id="historyBtn" class="secondary" type="button">练习记录</button>
+        </div>
+        <div class="meta" id="meta">正在读取题库…</div>
+      </aside>
+
+      <section class="question-card glass">
+        <div id="emptyState" class="empty">
+          <h2>准备开始</h2>
+          <p>左侧选择年份/批次，或选择随机考试，然后点击「开始练题」。</p>
+        </div>
+
+        <div id="quiz" class="hidden">
+          <div class="quiz-top">
+            <span id="progress" class="pill">第 1 / 1 题</span>
+            <span id="source" class="source"></span>
+          </div>
+          <h2 id="stem"></h2>
+          <div id="options" class="options"></div>
+          <textarea id="blankAnswer" class="blank hidden" placeholder="填空题答案输入在这里（第一版先人工对照答案）"></textarea>
+          <div class="actions">
+            <button id="prevBtn" class="secondary">上一题</button>
+            <button id="showBtn" class="primary">查看答案</button>
+            <button id="judgeBtn" class="secondary hidden">AI判断填空</button>
+            <button id="nextBtn" class="secondary">下一题</button>
+            <button id="submitBtn" class="danger">交卷</button>
+          </div>
+          <section id="answerBox" class="answer hidden"></section>
+        </div>
+      </section>
+    </section>
+
+    <section id="result" class="result glass hidden"></section>
+    <section id="library" class="result glass hidden"></section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

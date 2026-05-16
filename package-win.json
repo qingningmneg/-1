@@ -1,0 +1,10 @@
+{
+  "name": "ruankao-practice-windows",
+  "version": "0.1.0-win",
+  "description": "软考练题（Windows 版，无需 youdaonote CLI）",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server-win.js",
+    "dev": "node server-win.js"
+  }
+}
